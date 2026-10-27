@@ -5,7 +5,7 @@
 export const CONFIG = {
   version: "1.0.0",
 
-  // The live address, with no slash at the end, for example "https://catch-the-ai.vercel.app".
+  // The live address, with no slash at the end, for example "https://catchtheai.vercel.app/".
   // Set in Phase 6. While empty, the app uses the address it was opened from.
   siteUrl: "https://catchtheai.vercel.app/",
 

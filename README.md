@@ -5,8 +5,8 @@
 
 Test your code review reflexes! Inspect realistic AI-written code snippets and find the hidden bug before the 30-second countdown runs out.
 
-[![Live Deployment](https://img.shields.io/badge/Live_App-catch--the--ai.vercel.app-EC4899?style=for-the-badge&logo=vercel&logoColor=white)](https://catch-the-ai.vercel.app/)
-[![Self-Test Suite](https://img.shields.io/badge/Test_Suite-Passing-22C55E?style=for-the-badge&logo=checkmarx&logoColor=white)](https://catch-the-ai.vercel.app/?test=1)
+[![Live Deployment](https://img.shields.io/badge/Live_App-catchtheai.vercel.app-EC4899?style=for-the-badge&logo=vercel&logoColor=white)](https://catchtheai.vercel.app/)
+[![Self-Test Suite](https://img.shields.io/badge/Test_Suite-Passing-22C55E?style=for-the-badge&logo=checkmarx&logoColor=white)](https://catchtheai.vercel.app/?test=1)
 [![Verified Snippets](https://img.shields.io/badge/Content-20_Verified_Bug_Snippets-06B6D4?style=for-the-badge&logo=javascript&logoColor=white)](tools/verify-content.mjs)
 [![GitHub Repository](https://img.shields.io/badge/GitHub-Pradeep--B28%2FCatch__The__AI-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Pradeep-B28/Catch_The_AI)
 [![Author](https://img.shields.io/badge/Author-Pradeep_B-0B2A45?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/pradeepb-2k)

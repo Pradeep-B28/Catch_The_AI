@@ -229,12 +229,12 @@ export async function runSelfTest() {
 
   // --- f. Challenge links ---
   try {
-    const origin = "https://catch-the-ai.vercel.app";
+    const origin = "https://catchtheai.vercel.app/";
     const ids = ["b01", "b02", "b03", "b04", "b05", "b06", "b07", "b08"];
     const genLink = challengeLink(origin, ids, 6);
     const linkMatch =
       genLink ===
-      "https://catch-the-ai.vercel.app/?set=b01.b02.b03.b04.b05.b06.b07.b08&beat=6";
+      "https://catchtheai.vercel.app/?set=b01.b02.b03.b04.b05.b06.b07.b08&beat=6";
 
     const f1 = readChallenge("?set=b01.b02.b03.b04.b05.b06.b07.b08&beat=6");
     const f1Pass =
@@ -304,13 +304,13 @@ export async function runSelfTest() {
   // --- h. Share text ---
   try {
     const testLink =
-      "https://catch-the-ai.vercel.app/?set=b01.b02.b03.b04.b05.b06.b07.b08&beat=6";
+      "https://catchtheai.vercel.app/?set=b01.b02.b03.b04.b05.b06.b07.b08&beat=6";
     const expText6 =
-      "AI wrote 8 pieces of code, each with a hidden mistake. I caught 6. Can you beat me? https://catch-the-ai.vercel.app/?set=b01.b02.b03.b04.b05.b06.b07.b08&beat=6";
+      "AI wrote 8 pieces of code, each with a hidden mistake. I caught 6. Can you beat me? https://catchtheai.vercel.app/?set=b01.b02.b03.b04.b05.b06.b07.b08&beat=6";
     const expText8 =
-      "AI wrote 8 pieces of code, each with a hidden mistake. I caught all 8. Can you match that? https://catch-the-ai.vercel.app/?set=b01.b02.b03.b04.b05.b06.b07.b08&beat=6";
+      "AI wrote 8 pieces of code, each with a hidden mistake. I caught all 8. Can you match that? https://catchtheai.vercel.app/?set=b01.b02.b03.b04.b05.b06.b07.b08&beat=6";
     const expWaUrl =
-      "https://wa.me/?text=AI%20wrote%208%20pieces%20of%20code%2C%20each%20with%20a%20hidden%20mistake.%20I%20caught%206.%20Can%20you%20beat%20me%3F%20https%3A%2F%2Fcatch-the-ai.vercel.app%2F%3Fset%3Db01.b02.b03.b04.b05.b06.b07.b08%26beat%3D6";
+      "https://wa.me/?text=AI%20wrote%208%20pieces%20of%20code%2C%20each%20with%20a%20hidden%20mistake.%20I%20caught%206.%20Can%20you%20beat%20me%3F%20https%3A%2F%2Fcatchtheai.vercel.app%2F%3Fset%3Db01.b02.b03.b04.b05.b06.b07.b08%26beat%3D6";
 
     const text6 = shareText(6, 8, testLink);
     const text8 = shareText(8, 8, testLink);
