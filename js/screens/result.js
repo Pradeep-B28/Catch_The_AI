@@ -8,6 +8,7 @@ import { rank, resultLine, headToHeadLine, missedConcepts, averageCatchTime } fr
 import { salesUrl, websiteUrl } from "../links.js";
 import { getPack } from "../content.js";
 import { playResultFanfare } from "../fx/sound.js";
+import { createShareCard } from "../share.js";
 import { emit } from "../events.js";
 
 let currentRoot = null;
@@ -238,7 +239,7 @@ export function enter(params = {}) {
   if (isWhatsAppValid) {
     const waBtn = document.createElement("a");
     waBtn.className = "btn btn-primary cta-whatsapp-btn";
-    waBtn.href = salesUrl({ packName, score, total });
+    waBtn.href = salesUrl(CONFIG.salesWhatsApp, packName, score, total);
     waBtn.target = "_blank";
     waBtn.rel = "noopener noreferrer";
     waBtn.textContent = t("cta.whatsapp");
@@ -263,6 +264,19 @@ export function enter(params = {}) {
 
   ctaCard.appendChild(ctaButtons);
   layout.appendChild(ctaCard);
+
+  // --- Share Card (Section 6H) ---
+  if (CONFIG.features.shareImage) {
+    const challengeIds = params.challengeSet || results.map((r) => r.id);
+    const shareCard = createShareCard({
+      score,
+      total,
+      packName,
+      results,
+      challengeIds
+    });
+    layout.appendChild(shareCard);
+  }
 
   // --- Free Live Session Card (if enabled) ---
   if (CONFIG.session && CONFIG.session.enabled) {

@@ -104,12 +104,25 @@ export function readChallenge(search, packs = PACKS) {
  * @returns {string}
  */
 export function salesUrl(phone, mode, score, total) {
-  const number = phone || CONFIG.salesWhatsApp;
-  if (!isValidPhone(number)) return "";
+  let phoneNumber = phone;
+  let modeName = mode;
+  let scoreVal = score;
+  let totalVal = total;
+
+  if (typeof phone === "object" && phone !== null) {
+    phoneNumber = phone.phone || CONFIG.salesWhatsApp;
+    modeName = phone.mode || phone.packName;
+    scoreVal = phone.score;
+    totalVal = phone.total;
+  } else if (!phoneNumber) {
+    phoneNumber = CONFIG.salesWhatsApp;
+  }
+
+  if (!isValidPhone(phoneNumber)) return "";
 
   const course = CONFIG.courseName;
-  const text = `Hi, I just played Catch the AI on ${mode} mode and caught ${score} of ${total} mistakes. I'd like to know more about the ${course}.`;
-  return `https://wa.me/${number}?text=${encodeURIComponent(text)}`;
+  const text = `Hi, I just played Catch the AI on ${modeName} mode and caught ${scoreVal} of ${totalVal} mistakes. I'd like to know more about the ${course}.`;
+  return `https://wa.me/${phoneNumber}?text=${encodeURIComponent(text)}`;
 }
 
 /**

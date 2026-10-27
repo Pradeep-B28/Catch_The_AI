@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Share Card Renderer</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { width: 100%; height: 100%; overflow: hidden; background: #fff; }
+    canvas { display: block; }
+  </style>
+</head>
+<body>
+  <script type="module">
+    import { createShareImage } from "../js/shareImage.js";
+    import { getChallenge } from "../js/content.js";
+
+    const params = new URLSearchParams(window.location.search);
+    const score = parseInt(params.get("score") || "6", 10);
+    const size = params.get("size") || "status";
+
+    const sampleResults = [
+      { id: "b01", result: "caught", challenge: getChallenge("b01") },
+      { id: "b02", result: "caught", challenge: getChallenge("b02") },
+      { id: "b03", result: score === 8 ? "caught" : "wrong", challenge: getChallenge("b03") },
+      { id: "b04", result: "caught", challenge: getChallenge("b04") },
+      { id: "b05", result: "caught", challenge: getChallenge("b05") },
+      { id: "b06", result: score === 8 ? "caught" : "wrong", challenge: getChallenge("b06") },
+      { id: "b07", result: "caught", challenge: getChallenge("b07") },
+      { id: "b08", result: "caught", challenge: getChallenge("b08") }
+    ];
+
+    createShareImage({
+      score,
+      total: 8,
+      packName: "Beginner",
+      size,
+      results: sampleResults
+    }).then(({ canvas }) => {
+      document.body.appendChild(canvas);
+      window.__shareReady = true;
+    });
+  </script>
+</body>
+</html>

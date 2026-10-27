@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Catch the AI - Open Graph Preview</title>
+  <link rel="stylesheet" href="../styles/tokens.css">
+  <link rel="stylesheet" href="../styles/base.css">
+  <link rel="stylesheet" href="../styles/game.css">
+  <style>
+    body {
+      width: 1200px;
+      height: 630px;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background: var(--bg-grad);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-sizing: border-box;
+      position: relative;
+    }
+    .og-bar {
+      height: 6px;
+      background: var(--brand-grad);
+      width: 100%;
+    }
+    .og-content {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      align-items: center;
+      gap: 3rem;
+      padding: 3rem 4rem;
+      flex: 1;
+    }
+    .og-left {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+    .og-logo-row {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .og-logo {
+      height: 36px;
+    }
+    .og-brand-name {
+      font-weight: 800;
+      font-size: 1.5rem;
+      color: var(--brand);
+    }
+    .og-title {
+      font-size: 3.5rem;
+      font-weight: 800;
+      line-height: 1.1;
+      background: var(--brand-grad);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      letter-spacing: -0.02em;
+    }
+    .og-subtitle {
+      font-size: 1.25rem;
+      color: var(--text-2);
+      line-height: 1.4;
+    }
+    .og-footer-text {
+      padding: 0 4rem 2rem;
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--muted);
+    }
+  </style>
+</head>
+<body>
+  <div class="og-bar"></div>
+  <div class="og-content">
+    <div class="og-left">
+      <div class="og-logo-row">
+        <img src="../assets/logo.png" alt="Wrench Wise" class="og-logo">
+        <span class="og-brand-name">Wrench Wise</span>
+      </div>
+      <h1 class="og-title">Catch the AI</h1>
+      <p class="og-subtitle">AI wrote 8 pieces of code. Each has a hidden mistake. How many can you catch in 30 seconds each?</p>
+    </div>
+    <div class="og-right">
+      <div class="hero-editor-card" style="box-shadow: var(--shadow-xl);">
+        <div class="code-titlebar">
+          <div class="titlebar-left">
+            <div class="editor-dots">
+              <span class="editor-dot"></span>
+              <span class="editor-dot"></span>
+              <span class="editor-dot"></span>
+            </div>
+            <span class="editor-filename">hasDiscount.js</span>
+          </div>
+          <div class="titlebar-right">
+            <span class="ai-chip">AI wrote this</span>
+          </div>
+        </div>
+        <div class="code-editor-body" style="font-size: 14px;">
+          <div class="code-line-row">
+            <span class="code-line-gutter">1</span>
+            <div class="code-line-content"><span class="code-line-text"><span class="syn-keyword">function</span> <span class="syn-func">hasDiscount</span>(price, code) {</span></div>
+          </div>
+          <div class="code-line-row bug-line caught-line">
+            <span class="code-line-gutter">2</span>
+            <div class="code-line-content"><span class="code-line-text">  <span class="syn-keyword">if</span> (code = <span class="syn-string">"SAVE10"</span>) {</span></div>
+            <div class="stamp-badge stamp-caught" style="top: 50%;">CAUGHT</div>
+          </div>
+          <div class="code-line-row">
+            <span class="code-line-gutter">3</span>
+            <div class="code-line-content"><span class="code-line-text">    <span class="syn-keyword">return</span> price * <span class="syn-number">0.9</span>;</span></div>
+          </div>
+          <div class="code-line-row">
+            <span class="code-line-gutter">4</span>
+            <div class="code-line-content"><span class="code-line-text">  }</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="og-footer-text">wrench-wise.com</div>
+</body>
+</html>

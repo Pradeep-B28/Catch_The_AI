@@ -1088,3 +1088,57 @@
     grid-template-columns: 1fr 1fr;
   }
 }
+
+/* Share Card (Section 6H) */
+.share-card {
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-card);
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.875rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.share-title {
+  font-size: 1.125rem;
+  font-weight: 800;
+  color: var(--text);
+  margin: 0;
+}
+
+.share-size-pills {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.share-pill {
+  padding: 0.3rem 0.875rem;
+  border-radius: var(--radius-full);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  border: 1px solid var(--border);
+  background-color: var(--surface-2);
+  color: var(--muted);
+  cursor: pointer;
+  transition: all var(--duration-fast) var(--ease);
+}
+
+.share-pill.active {
+  background-color: var(--brand-soft);
+  color: var(--brand-strong);
+  border-color: var(--brand);
+}
+
+.share-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.share-action-btn {
+  width: 100%;
+}
+
