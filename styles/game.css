@@ -479,13 +479,16 @@
   font-size: 0.9375rem;
   font-weight: 700;
   border-radius: var(--radius-full);
+  transition: all var(--duration-fast) var(--ease);
 }
 
-.confirm-btn:disabled {
-  opacity: 0.45;
-  cursor: not-allowed;
-  background-color: var(--surface-2);
-  color: var(--muted);
+.confirm-btn:disabled,
+.btn.confirm-btn:disabled {
+  opacity: 1;
+  cursor: default;
+  background: var(--surface-2) !important;
+  background-image: none !important;
+  color: var(--text) !important;
   border: 1px solid var(--border);
 }
 
@@ -1141,4 +1144,26 @@
 .share-action-btn {
   width: 100%;
 }
+
+/* Demo Mode Tap Dot (Section 6L) */
+.demo-tap-dot {
+  position: fixed;
+  width: 28px;
+  height: 28px;
+  border-radius: var(--radius-full);
+  background: rgba(16, 185, 129, 0.45);
+  border: 2px solid #FFFFFF;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.35);
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%) scale(1);
+  transition: left 0.35s cubic-bezier(0.2, 0.8, 0.2, 1), top 0.35s cubic-bezier(0.2, 0.8, 0.2, 1), transform 0.15s ease, opacity 0.2s ease;
+  opacity: 0;
+}
+
+.demo-tap-dot.tapped {
+  transform: translate(-50%, -50%) scale(0.75);
+  background: rgba(16, 185, 129, 0.8);
+}
+
 
