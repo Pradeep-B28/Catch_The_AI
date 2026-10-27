@@ -1,4 +1,4 @@
-// Home screen interactive 3D hero editor animation looping through b01, d07, and b03.
+// Home screen professional hero editor animation looping through b01, d07, and b03.
 // Uses content.js, highlight.js, and fx/stamp.js.
 // Used by the home screen to showcase the core value proposition.
 
@@ -16,7 +16,6 @@ const SNIPPET_IDS = ["b01", "d07", "b03"];
 export function initHeroEditor(container) {
   let isDestroyed = false;
   let loopTimeout = null;
-  let activeTyping = null;
   let snippetIdx = 0;
 
   const reducedMotion =
@@ -61,25 +60,6 @@ export function initHeroEditor(container) {
 
   container.appendChild(card);
 
-  // 3D Tilt pointer follow on desktop
-  function handlePointerMove(e) {
-    if (reducedMotion || window.innerWidth < 900) return;
-    const rect = card.getBoundingClientRect();
-    const x = (e.clientX - (rect.left + rect.width / 2)) / (rect.width / 2);
-    const y = (e.clientY - (rect.top + rect.height / 2)) / (rect.height / 2);
-    const tiltX = 8 - y * 6;
-    const tiltY = -12 + x * 6;
-    card.style.transform = `perspective(1000px) rotateX(${tiltX}deg) rotateY(${tiltY}deg)`;
-  }
-
-  function handlePointerLeave() {
-    if (reducedMotion || window.innerWidth < 900) return;
-    card.style.transform = "perspective(1000px) rotateX(8deg) rotateY(-12deg)";
-  }
-
-  window.addEventListener("pointermove", handlePointerMove);
-  card.addEventListener("pointerleave", handlePointerLeave);
-
   // Render static line row
   function renderSnippetLine(text, lineNum, isBug = false, isGlitch = false) {
     const row = document.createElement("div");
@@ -113,7 +93,6 @@ export function initHeroEditor(container) {
     card.classList.remove("hero-fading");
 
     if (reducedMotion) {
-      // Show still caught state without animation
       challenge.code.forEach((line, idx) => {
         const lineNum = idx + 1;
         const isBug = lineNum === challenge.bugLine;
@@ -216,8 +195,6 @@ export function initHeroEditor(container) {
     destroy: () => {
       isDestroyed = true;
       if (loopTimeout) clearTimeout(loopTimeout);
-      window.removeEventListener("pointermove", handlePointerMove);
-      card.removeEventListener("pointerleave", handlePointerLeave);
       if (card.parentNode) card.parentNode.removeChild(card);
     }
   };

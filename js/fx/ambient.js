@@ -26,17 +26,21 @@ export function initAmbient(container) {
   const elements = [];
   const symbolCount = 14;
 
+  // Distribute symbols gently towards the flanks to keep center reading area clean
   for (let i = 0; i < symbolCount; i++) {
     const el = document.createElement("span");
     el.className = "ambient-symbol";
     el.textContent = SYMBOLS[i % SYMBOLS.length];
 
-    const left = (i / symbolCount) * 100 + (Math.random() * 6 - 3);
-    const size = Math.floor(Math.random() * 7) + 14; // 14 to 20px
-    const duration = Math.floor(Math.random() * 9) + 12; // 12 to 20s
-    const delay = Math.random() * -20; // Stagger initial positions
+    // Half on left flank (2% - 28%), half on right flank (72% - 96%)
+    const isLeft = i % 2 === 0;
+    const baseCol = isLeft ? 2 + (i / symbolCount) * 48 : 72 + (i / symbolCount) * 44;
+    const left = Math.max(2, Math.min(96, baseCol));
+    const size = Math.floor(Math.random() * 5) + 14; // 14 to 18px
+    const duration = Math.floor(Math.random() * 8) + 18; // 18 to 26s gentle float
+    const delay = Math.random() * -24; // Stagger initial positions
 
-    el.style.left = `${Math.max(2, Math.min(96, left))}%`;
+    el.style.left = `${left}%`;
     el.style.fontSize = `${size}px`;
     el.style.animationDuration = `${duration}s`;
     el.style.animationDelay = `${delay}s`;

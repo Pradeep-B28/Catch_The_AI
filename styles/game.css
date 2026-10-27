@@ -579,7 +579,12 @@
 
 @media (min-width: 900px) {
   .hero-editor-card {
-    transform: perspective(1000px) rotateX(8deg) rotateY(-12deg);
+    transform: none;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.3s ease;
+  }
+  .hero-editor-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 25px 30px -8px rgba(0, 0, 0, 0.3);
   }
 }
 
@@ -615,7 +620,7 @@
   position: fixed;
   inset: 0;
   pointer-events: none;
-  z-index: 0;
+  z-index: -1;
   overflow: hidden;
 }
 
@@ -623,18 +628,18 @@
   position: absolute;
   bottom: -40px;
   color: var(--brand);
-  opacity: 0.1;
+  opacity: 0.05;
   font-family: var(--font-mono);
-  font-weight: 700;
+  font-weight: 600;
   user-select: none;
   animation: float-up linear infinite;
 }
 
 @keyframes float-up {
   0% { transform: translateY(0); opacity: 0; }
-  10% { opacity: 0.12; }
-  80% { opacity: 0.1; }
-  100% { transform: translateY(-110vh); opacity: 0; }
+  15% { opacity: 0.06; }
+  85% { opacity: 0.05; }
+  100% { transform: translateY(-105vh); opacity: 0; }
 }
 
 /* Home Screen Layout */
