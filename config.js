@@ -7,7 +7,7 @@ export const CONFIG = {
 
   // The live address, with no slash at the end, for example "https://catch-the-ai.vercel.app".
   // Set in Phase 6. While empty, the app uses the address it was opened from.
-  siteUrl: "",
+  siteUrl: "https://catchtheai.vercel.app/",
 
   // The game
   roundSize: 8,
