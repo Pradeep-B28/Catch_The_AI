@@ -1,132 +1,101 @@
-<div align="center">
+# Catch the AI — Interactive Code Review & Debugging Engine
 
-# 🤖 Catch the AI
-### *Fast-Paced Developer Debugging Game: Spot Subtle Bugs in AI-Generated Code*
-
-Test your code review reflexes! Inspect realistic AI-written code snippets and find the hidden bug before the 30-second countdown runs out.
-
-[![Live Deployment](https://img.shields.io/badge/Live_App-catchtheai.vercel.app-EC4899?style=for-the-badge&logo=vercel&logoColor=white)](https://catchtheai.vercel.app/)
-[![Self-Test Suite](https://img.shields.io/badge/Test_Suite-Passing-22C55E?style=for-the-badge&logo=checkmarx&logoColor=white)](https://catchtheai.vercel.app/?test=1)
-[![Verified Snippets](https://img.shields.io/badge/Content-20_Verified_Bug_Snippets-06B6D4?style=for-the-badge&logo=javascript&logoColor=white)](tools/verify-content.mjs)
-[![GitHub Repository](https://img.shields.io/badge/GitHub-Pradeep--B28%2FCatch__The__AI-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Pradeep-B28/Catch_The_AI)
-[![Author](https://img.shields.io/badge/Author-Pradeep_B-0B2A45?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/pradeepb-2k)
-[![License: MIT](https://img.shields.io/badge/License-MIT-F59E0B?style=for-the-badge)](LICENSE)
-
-<p align="center">
-  <a href="#-how-to-play-in-3-steps">How to Play</a> •
-  <a href="#-engine-architecture--features">Architecture</a> •
-  <a href="#-repository-structure">Repository Structure</a> •
-  <a href="#-local-development">Local Setup</a> •
-  <a href="#-automated-content-verification">Verification Harness</a> •
-  <a href="#-license">License</a> •
-  <a href="#-author--contact">Author & Contact</a>
-</p>
-
-</div>
+> **Live Application:** [catchtheai.vercel.app](https://catchtheai.vercel.app/)  
+> **Automated In-Browser Test Suite:** [catchtheai.vercel.app/?test=1](https://catchtheai.vercel.app/?test=1)  
+> **Author:** [B Pradeep](https://github.com/Pradeep-B28) · [Portfolio](https://pradeep-b28.github.io/Pradeep-B28/)
 
 ---
 
-## 🎮 How to Play in 3 Steps
+## Overview
 
-1. **Read what the code should do:** Review the specification prompt at the top of the challenge card.
-2. **Tap the line with the mistake:** Inspect the syntax, logic, boundary conditions, or async handling and select the exact line with the AI defect before the timer expires.
-3. **See what the AI got wrong:** Review the side-by-side color-coded fix diff, watch the simulated terminal console output, and master the underlying engineering concept.
+**Catch the AI** is a fast-paced developer code-review game where players inspect AI-generated code snippets and identify subtle bugs, off-by-one errors, state mutation side effects, and asynchronous race conditions before the 30-second timer runs out.
 
----
+Built with vanilla JavaScript (ES modules) featuring a decoupled publish/subscribe event bus, procedural Web Audio API sound synthesis, canvas-measured dynamic font fitting, and zero build tool overhead.
 
-## ⚡ Engine Architecture & Features
-
-- **Decoupled Event Bus:** All UI views, sound effects, analytics, and game state communicate through an event bus (`events.js`). No screen directly manipulates another screen's internal DOM.
-- **Drift-Free High-Precision Timer:** The 30-second countdown calculates true elapsed time using differences between `performance.now()` timestamps rather than relying on inaccurate `setInterval` ticks. Automatically pauses when browser tab visibility is lost.
-- **Canvas Auto-Fit Font Scaling:** Monospace code font size dynamically scales between 11px and 16px via canvas `measureText` metrics, ensuring long lines fit without horizontal scrollbars or awkward line wraps.
-- **Stateless URL Challenge Links:** Challenge links carry snippet IDs and target scores directly in URL query parameters (`?set=b01.b02.b03...&beat=6`). The client validates and serves the exact customized tournament set with zero server dependencies.
-- **Content Verification Harness:** Every challenge is backed by an automated runner (`tools/verify-content.mjs`) that executes both the buggy AI code and the corrected fix in Node.js to guarantee 100% legitimate runtime bugs.
-
----
-
-## 📂 Repository Structure
-
-```
-Catch_The_AI/
-├── index.html        Main application structure, HUD controls, and game card
-├── config.js         Configuration flags and live domain endpoints
-├── LICENSE           MIT Open Source License
-├── README.md         Project overview, architecture, and developer instructions
-├── styles/
-│   ├── base.css      CSS reset, design tokens, and core layout
-│   ├── game.css      Card glassmorphism, timer HUD, code highlighting, and diff views
-│   └── tokens.css    Theme color palette and typography tokens
-├── js/
-│   ├── main.js       Game initialization and lifecycle orchestration
-│   ├── events.js     Decoupled publish-subscribe event bus
-│   ├── game.js       Game loop, rounds, scoring, and streak tracking
-│   ├── content.js    20 real-world AI coding snippets, tasks, and diff explanations
-│   ├── timer.js      High-precision performance.now() countdown clock
-│   ├── fitcheck.js   Canvas measureText code card auto-fit scaler
-│   ├── highlight.js  Client-side lightweight JavaScript syntax highlighter
-│   ├── router.js     Screen state transitions and view routing
-│   ├── share.js      WhatsApp share text and native Web Share integration
-│   ├── shareImage.js Canvas-rendered high-res achievement card generator
-│   ├── selftest.js   Browser automated verification suite
-│   ├── score.js      Score calculations, combo multipliers, and localStorage bests
-│   ├── rng.js        Seeded PRNG for reproducible randomized challenge sets
-│   ├── links.js      Deep-link parser and URL challenge set generator
-│   └── audio.js      Procedural Web Audio buzzers, tick-tocks, and success chimes
-└── tools/
-    ├── verify-content.mjs Node.js test harness validating all 20 bugs & fixes
-    ├── og.html            Open Graph preview banner canvas generator
-    └── render_share.html  Offline share card preview tool
+```mermaid
+flowchart TD
+    User["Player Input\n(Line Tap / Selection)"] --> EventBus["Decoupled Event Bus\n(events.js Pub/Sub)"]
+    
+    subgraph Core Engine Modules
+        Timer["Precision Timer\n(performance.now() drift compensation)"]
+        FitCheck["Canvas Font Scaler\n(measureText 11px-16px auto-fit)"]
+        Audio["Procedural Web Audio Engine\n(AudioContext chimes & clicks, zero mp3s)"]
+        Game["Game Controller\n(Streak tracking, combos, seed PRNG)"]
+    end
+    
+    EventBus --> Timer
+    EventBus --> FitCheck
+    EventBus --> Audio
+    EventBus --> Game
+    
+    Game --> Content["20 Verified Bug Scenarios\n(tools/verify-content.mjs runner)"]
+    Game --> DiffView["Side-by-Side Diff & Fix Explanation\n(Simulated terminal output)"]
 ```
 
 ---
 
-## 💻 Local Development
+## Architectural Highlights
 
-Catch the AI runs natively in modern browsers with zero build tools required:
+| Feature | Technical Implementation |
+| :--- | :--- |
+| **Decoupled Event Bus** | Screens and components communicate exclusively through a centralized publish/subscribe bus (`js/events.js`), preventing DOM coupling. |
+| **Drift-Free Precision Timer** | 30-second countdown calculates actual elapsed time via delta `performance.now()` stamps rather than drifted `setInterval` ticks; automatically pauses when `visibilitychange` fires. |
+| **Dynamic Canvas Font Fitting** | Measures snippet line lengths via canvas `context.measureText()` and scales monospace font dynamically between 11px and 16px to prevent horizontal line wrapping. |
+| **Procedural Sound Engine** | All click sounds, countdown ticks, and victory chimes are synthesized directly in code using the native Web Audio API oscillators—zero external MP3/WAV assets required. |
+| **Automated Bug Verification** | All 20 AI bug scenarios are accompanied by unit tests in `tools/verify-content.mjs` verifying both failure on buggy code and pass on corrected fixes. |
+
+---
+
+## Core Game Flow
+
+1. **Prompt & Specification Review:** The player inspects what the AI was prompted to write.
+2. **Defect Identification:** The player identifies and taps the faulty line under a 30-second countdown.
+3. **Execution Diff & Concept Mastery:** Upon selection, an interactive diff view explains the exact defect (e.g. object reference mutation, unawaited promise, index boundary error) alongside simulated terminal execution output.
+
+---
+
+## Automated Verification Harness
+
+Every snippet in the game is validated by a headless Node.js test harness:
 
 ```bash
-# Clone the repository
-git clone https://github.com/Pradeep-B28/Catch_The_AI.git
-cd Catch_The_AI
-
-# Start a local static file server
-python -m http.server 8000
-```
-
-Open `http://localhost:8000/` in your browser.
-
----
-
-## 🧪 Automated Content Verification
-
-To run the automated verification test harness that executes all 20 code snippets in Node.js:
-
-```bash
+# Verify all 20 bug and fix scenarios
 node tools/verify-content.mjs
 ```
 
-To run the full browser-based engine test suite (covering rounds, timers, streak calculations, URL serialization, and canvas scaling):
-- Open `http://localhost:8000/?test=1` in your browser.
-
----
-
-## 📄 License
-
-This project is open-source and released under the **[MIT License](LICENSE)**.
-
+Or run the client test suite directly in your browser:
 ```
-Copyright (c) 2026 Pradeep B (Pradeep-B28) & Wrench Wise
+https://catchtheai.vercel.app/?test=1
 ```
 
 ---
 
-## 👨‍💻 Author & Contact
+## Local Development Setup
 
-**Pradeep B**  
-*Java & DSA Master Trainer | Full-Stack Architect | Web Platform Engineer*
+No build step, transpiler, or bundler is needed.
 
-- 🌐 **Softech Career & Placement Portal:** [reachsoftech.onrender.com](https://reachsoftech.onrender.com/home)
-- 🌌 **3D Interactive Developer Portfolio:** [pradeep-b28.github.io/GIT_3D_Portfolio](https://pradeep-b28.github.io/GIT_3D_Portfolio/)
-- 💻 **GitHub Profile:** [@Pradeep-B28](https://github.com/Pradeep-B28)
-- 💼 **LinkedIn:** [linkedin.com/in/pradeepb-2k](https://www.linkedin.com/in/pradeepb-2k)
-- 📧 **Email:** [pradeepbashaa@gmail.com](mailto:pradeepbashaa@gmail.com)
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/Pradeep-B28/Catch_The_AI.git
+   cd Catch_The_AI
+   ```
+
+2. **Serve with any local static HTTP server:**
+   ```bash
+   # Using Python 3
+   python -m http.server 8000
+
+   # Or using Node npx
+   npx serve .
+   ```
+
+3. **Open in browser:**
+   ```
+   http://localhost:8000
+   ```
+
+---
+
+## License
+
+This project is licensed under the [MIT License](LICENSE).
