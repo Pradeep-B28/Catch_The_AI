@@ -1,0 +1,8 @@
+{
+  "name": "catch-the-ai",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "check": "node tools/verify-content.mjs"
+  }
+}

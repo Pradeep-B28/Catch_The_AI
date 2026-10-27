@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Catch the AI by Wrench Wise</title>
+  <meta name="description" content="AI wrote 8 pieces of code. Each has a hidden mistake. How many can you catch in 30 seconds each?">
+
+  <!-- Theme color -->
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#FFFFFF">
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0F172A">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Catch the AI by Wrench Wise">
+  <meta property="og:description" content="AI wrote 8 pieces of code. Each has a hidden mistake. How many can you catch in 30 seconds each?">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://catch-the-ai.vercel.app">
+  <meta property="og:image" content="https://catch-the-ai.vercel.app/assets/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="icon" type="image/png" href="assets/favicon.png">
+  <link rel="stylesheet" href="styles/tokens.css">
+  <link rel="stylesheet" href="styles/base.css">
+  <link rel="stylesheet" href="styles/game.css">
+</head>
+<body>
+  <div id="app">
+    <header class="site-header">
+      <div class="header-inner">
+        <a href="/" class="header-brand" aria-label="Catch the AI Home">
+          <img src="assets/logo.png" alt="Wrench Wise" class="header-logo" onerror="this.style.display='none'; document.getElementById('header-fallback').style.display='inline';">
+          <span id="header-fallback" class="header-wordmark" style="display: none; font-weight: 800; color: var(--brand);">Wrench Wise</span>
+          <span class="header-divider" aria-hidden="true"></span>
+          <span class="header-title">Catch the AI</span>
+        </a>
+        <div class="header-actions">
+          <button id="sound-btn" class="icon-btn" aria-label="Mute sound" title="Mute sound">
+            <svg id="sound-icon-on" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+              <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+            </svg>
+            <svg id="sound-icon-muted" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" hidden>
+              <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+              <line x1="23" y1="9" x2="17" y2="15"></line>
+              <line x1="17" y1="9" x2="23" y2="15"></line>
+            </svg>
+          </button>
+          <button id="theme-btn" class="icon-btn" aria-label="Toggle theme" title="Toggle theme">
+            <svg id="theme-icon-sun" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="5"></circle>
+              <line x1="12" y1="1" x2="12" y2="3"></line>
+              <line x1="12" y1="21" x2="12" y2="23"></line>
+              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+              <line x1="1" y1="12" x2="3" y2="12"></line>
+              <line x1="21" y1="12" x2="23" y2="12"></line>
+              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+            </svg>
+            <svg id="theme-icon-moon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" hidden>
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+      <div class="header-gradient-bar" aria-hidden="true"></div>
+    </header>
+
+    <main id="main-content" class="site-main" role="main">
+      <div style="text-align: center; padding: 3rem 1rem;">
+        <h1 style="font-size: 2rem; margin-bottom: 0.5rem; background: var(--brand-grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Catch the AI</h1>
+        <p style="color: var(--muted); max-width: 480px; margin: 0 auto;">Phase 0 shell initialized. Ready for Phase 1 engine and test build.</p>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <span>Built with code by Wrench Wise</span>
+        <a class="footer-link" href="https://wrench-wise.com/?utm_source=catch-the-ai&amp;utm_medium=web-app&amp;utm_campaign=catch-the-ai-2026&amp;utm_content=footer" target="_blank" rel="noopener noreferrer">Learn to build apps like this</a>
+        <span class="footer-version">v1.0.0</span>
+      </div>
+    </footer>
+  </div>
+
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>
