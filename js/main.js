@@ -32,6 +32,16 @@ function setupHeaderControls() {
     });
   }
 
+  // --- Brand Logo/Title navigation to Home ---
+  const brandLink = document.querySelector(".header-brand");
+  if (brandLink) {
+    brandLink.addEventListener("click", async (e) => {
+      e.preventDefault();
+      const router = await import("./router.js");
+      router.navigate("home");
+    });
+  }
+
   // --- Theme Toggle ---
   const themeBtn = document.getElementById("theme-btn");
   const sunIcon = document.getElementById("theme-icon-sun");
@@ -126,7 +136,14 @@ async function init() {
     return;
   }
 
-  // 4. Initialize analytics
+  // 4. Fit check preview (?preview=all)
+  if (params.get("preview") === "all") {
+    const { runFitCheck } = await import("./fitcheck.js");
+    runFitCheck(container);
+    return;
+  }
+
+  // 5. Initialize analytics
   initAnalytics();
 
   // 5. Default interactive app router
@@ -134,4 +151,6 @@ async function init() {
   router.init(container);
 }
 
-init();
+if (typeof window !== "undefined") {
+  init();
+}
